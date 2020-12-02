@@ -86,7 +86,7 @@
 \section{Introduction}
 \subsection{Research's goal}
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{Research's goal}
+\begin{frame}{Research's goal - Part 1}
 %---------------------------------------------------------------------------------------------------------%
 
 According to \citet{ITPAReport}, research's goal is to:
@@ -118,76 +118,30 @@ According to \citet{ITPAReport}, is possible to improve security deploying a net
 %---------------------------------------------------------------------------------------------------------%
 
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{Research's goal}
+\begin{frame}{Research's goal - - Part 2}
 %---------------------------------------------------------------------------------------------------------%
 
 In other words, research's goal is to build an classification model for IoT devices based on \textbf{machine learning} techniques, which building passes through following steps:
 
 \begin{enumerate}
+\justifying
 \item Collect data from an IoT environment.
 \item Characterize traffic pattern corresponding to the various IoT devices.
 \item Develop a classification technique that learns the behaviour of an IoT device and is able to identify it based on its traffic pattern.
 \end{enumerate}
 
-
-
-
-
-
-
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
-\section{IoT Traffic Pattern}
+\section{The ``Smart Environment"}
+\subsection{Overview}
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{Data-set building - Part 1}
-%---------------------------------------------------------------------------------------------------------%
-
-\begin{block}{}
-\justifying
-Since \citet{ITPAReport} adopted a \textbf{supervised machine learning algorithms} to build their classification model, is necessary to generate a \textbf{data-set} in order to provide an appropriate input during the \textbf{learning phase}.
-\end{block}
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{Data-set building - Part 2}
+\begin{frame}{The ``Smart Environment" - Overview - Part 1}
 %---------------------------------------------------------------------------------------------------------%
 
 \begin{itemize}
 \justifying
-\item \citet{ITPAReport} collected traffic over $3$ weeks generated from a so-called ``\textit{Smart Environment}" built by them. 
-
-\item Is very important to precise that collected data are \textbf{time series}, where each instance, indexed by time, contains several \textbf{attributes} (or \textbf{features}) including:
-
-\begin{itemize}
-\item Sleep Time.
-\item Active time.
-\item Average packet size.
-\item peak/mean rate.
-\item Number of used protocols.
-\item Unique \texttt{DNS} requests. 
-
-\end{itemize}
-
-\item Clearly, every instance contains a \textbf{label} identifying the IoT device, which is necessary during supervised learning.
-\end{itemize}
-
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
-\subsection{The ``Smart Environment"}
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{The ``Smart Environment" - Part 1}
-%---------------------------------------------------------------------------------------------------------%
-
-\begin{itemize}
-\justifying
-\item In order to build the necessary dataset, \citet{ITPAReport} built the aforementioned ``\textit{Smart Environment}" to simulate a real usage scenario, collecting required data.
-
-\item This environment is made up of:
+\item In order to collect data, \citet{ITPAReport} built a ``\textit{Smart Environment}" to simulate a real usage scenario including:
 
 \begin{itemize}
 \justifying
@@ -195,7 +149,7 @@ Since \citet{ITPAReport} adopted a \textbf{supervised machine learning algorithm
 
 \item A router, the \textsc{TP Link Archer C7}\footnote{\tiny\url{https://www.tp-link.com/it/home-networking/wifi-router/archer-c7/\#overview}}
 
-\item Several non-IoT devices were also used, such as laptops, mobile phones and tablet.
+\item Several \textbf{non-IoT} devices were also used, such as laptops, mobile phones and tablet.
 
 \end{itemize}
 \end{itemize}
@@ -209,10 +163,11 @@ Since \citet{ITPAReport} adopted a \textbf{supervised machine learning algorithm
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{The ``Smart Environment" - Part 2}
+\begin{frame}{The ``Smart Environment" - Overview - Part 2}
 %---------------------------------------------------------------------------------------------------------%
 
 \begin{block}{}
+\justifying
 Several IoT devices used by \citet{ITPAReport} for their experiments \textbf{are battery operated}. 
 
 For instance:
@@ -231,55 +186,59 @@ For instance:
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
-\subsection{``Smart Environment" Architecture}
+\subsection{Architecture}
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{``Smart Environment" Architecture - Part 1}
+\begin{frame}{The ``Smart Environment" - Architecture - Part 1}
 %---------------------------------------------------------------------------------------------------------%
 
 The architecture of the ``Smart Environment"  can be splitted into:
 
 \begin{description}
 \justifying
-\item[\textbf{Front-end}] which contains the \textit{router} and the \textit{IoT/non-IoT devices}
+\item[\textbf{Front-end}] which contains the \textit{router} and the \textit{IoT/non-IoT devices}. Both \textit{wireless} and \textit{wired} interfaces are used.
 
-\item[\textbf{Back-end}] represented by the \textit{cloud} which is responsible for computations, storing received information, filtering duplicate packets and so on.
-through the gateway
+\item[\textbf{Back-end}] represented by the \textit{cloud}. 
+
+IoT devices also rely on cloud back-end services for \textbf{data storage}, \textbf{backup}, \textbf{firmware updates}, \textbf{remote access and integration}, and other services, like \textbf{media streaming} \cite{mazhar2020characterizing}.
 
 \end{description}
 
 \begin{block}{}
 \justifying
-Cloud resources are exploited through so-called \textbf{cyber-foraging techniques} in order to overcome the very strictly constrains of any IoT devices.
-\end{block}
+\begin{itemize}
 
-\begin{block}{}
-\justifying
-Proposed architecture is intended for \textbf{cloud-native} applications.
+\item Proposed architecture is intended for \textbf{cloud-native} IoT applications and services \cite{TheSeminalRoleEdgeNativeApplications}.
+
+\item Cloud resources are exploited through so-called \textbf{cyber-foraging techniques} in order to overcome the very strictly constrains of any IoT devices. \cite{TheSeminalRoleEdgeNativeApplications}.
+
+\end{itemize}
+ 
 \end{block}
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{``Smart Environment" Architecture - Part 2}
+\begin{frame}{The ``Smart Environment" - Architecture - Part 2}
 %---------------------------------------------------------------------------------------------------------%
 
 \begin{block}{}
-The front-end of the ``Smart Environment", build by researchers, is characterized by a \textbf{star network topology}.
+The implementation of the ``\textit{Smart Environment}" is based on a \textbf{star network topology}.
 \end{block}
 
-This is a very important observation, because a star topology allows us to:
+The use of a star network topology allows us to:
 
 \begin{itemize}
 \justifying
-\item \textbf{Preserve battery life} of IoT devices because they \textbf{do not have to forward} other nodes data; in other words, \textit{any IoT device receives, or transmits, only its own data}.
+\item \textbf{Preserve battery life} of IoT devices because they \textbf{do not have to forward} other nodes data; in other words, \textit{any IoT device receives, or transmits, only its own data} \cite{LoRaWAN}.
 
-\item \textbf{Decrease the complexity} of the network.
+\item \textbf{Decrease the complexity} of the network \cite{LoRaWAN} making infrastructure deployment cost low \cite{nokia}.
+
 \end{itemize}
 
-\begin{block}{The LPWAN example}
+\begin{block}{}
 \justifying
-The implementation of \texttt{LoRaWAN} network is based on the star network topology, and mostly, stars-of-stars network. 
+Also the implementation of \texttt{LoRaWAN} network is based on the star network topology, and mostly, stars-of-stars network \cite{LoRaWAN}. 
 
 As known \texttt{LoRaWAN} network belongs to \texttt{LPWAN} category, \textit{which are specifically designed to achieve the need for low power, long-range, low bit error rate, and low cost} needed in IoT context. 
 \end{block}
@@ -287,12 +246,12 @@ As known \texttt{LoRaWAN} network belongs to \texttt{LPWAN} category, \textit{wh
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
-\subsection{``Smart Environment"'s Wireless Networks Technology}
+\subsection{Wireless Technologies}
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{``Smart Environment"'s Wireless Networks Technology}
+\begin{frame}{The ``Smart Environment" - Wireless Technologies - Part 1}
 %---------------------------------------------------------------------------------------------------------%
 
-According to vendor's specifications regarding the \textsc{TP Link Archer C7}, is possible to know that the aforementioned router supports following protocols:
+According to vendor's specifications regarding the \textsc{TP Link Archer C7}, is possible to know that aforementioned router supports following protocols:
 
 \begin{itemize}
 \item \texttt{IEEE 802.11ac/n/a} at $5$ GHz
@@ -313,63 +272,71 @@ We don't know with which \textbf{frequencies} data has been transmitted.
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{``Smart Environment"'s Wireless Networks Technology}
+\begin{frame}{The ``Smart Environment" - Wireless Technologies - Part 2}
 %---------------------------------------------------------------------------------------------------------%
 
 \begin{block}{}
 \justifying
-We believe that above protocols are \textbf{not} fully optimized for IoT business models and devices used in smart cities and campuses for following reasons:
+Above wireless technologies are \textbf{not} fully optimized for IoT business models and devices used in \textbf{smart cities} and \textbf{campuses}.
+\end{block}
 
 \begin{itemize}
 \justifying
-\item These technologies provide a \textbf{short/medium coverage} with \textbf{100-to-1000} meters range. Provided coverage range can be not enough to fulfil all use cases.
+\item Despite high reliability, low latency, and high transfer rates (using \texttt{802.11ac} $5$ GHz we can achieve $1300$ Mbps), due to their \textbf{inherent complexity} and \textbf{energy consumption} are generally not suitable for all IoT nodes \cite{IOTCITY}.
+
+Generally, \textit{constrained} IoT devices requires \textbf{low power} and \textbf{less data-rate} \cite{nokia}; therefore  \texttt{IEEE 802.15.4}, \texttt{IEEE 802.11ah} or \texttt{LoRaWAN} can be better choice \cite{IOTCITY}.
+
+\item These technologies provide a \textbf{short/medium coverage} with \textbf{100-to-1000} meters range \cite{LoRaWAN}. Provided coverage range can be not enough to fulfil all use cases.
 
 \begin{itemize}
-\item This is due to \textbf{mid/high frequencies} used by these protocol which are \textbf{vulnerable to several side effect during signal propagation} (\textit{blocking}, \textit{reflection}, \textit{refraction} and so on)
+
+\item This is due to \textbf{mid/high frequencies} used by these protocol which are \textbf{vulnerable to several side effect during signal propagation} (\textit{blocking}, \textit{reflection}, \textit{refraction} and so on) \cite{schiller2003mobile}.
 \end{itemize}
 
-\item They are affected by \textbf{header-overhead} caused by \textbf{short packets transmission} which are very common is many IoT scenarios.
-
 \end{itemize}
-\end{block}
+
 
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{``Smart Environment"'s Wireless Networks Technology}
+\begin{frame}{The ``Smart Environment" - Wireless Technologies - Part 3}
 %---------------------------------------------------------------------------------------------------------%
 
 \begin{block}{}
 \justifying
-Utilizing sub-1 GHz bands used by both \texttt{802.11ah} and \texttt{LoRaWAN}, is possible to provide \textbf{better  propagation characteristics} in outdoor scenarios. 
+Utilizing sub-1 GHz bands is possible to provide \textbf{better  propagation characteristics} in outdoor scenarios. 
 
 \textbf{Low frequencies signal are less affected by obstacles presence.}
 \end{block}
 
-\begin{block}{}
-A combination of low-band, mid-band and high-band spectrum is desirable to manage all possible use cases.
-\end{block}
-
-\begin{adjustbox}{width=\columnwidth,center}
-\begin{tabular}{l|ccccc}
-
-& \textbf{802.11ac} & \textbf{802.11n} & \textbf{802.11a} & \textbf{802.11ah} & \textbf{LoRaWAN} \\
-\hline
-\textbf{Frequency (GHz)} & $5$ & $2.4$,$5$ & $5$ & $0.7/0.8/0.9$ & $\backsim 0.86 (EU)$ \\
-\textbf{Sensitivity (dbm)} & $-82$ & $-82$ & $-88$ & $-98$ &  $[-124,-137]$ \\
-\textbf{Bit rate} & $6.5$ (Mb/s) & $6.5$ (Mb/s) & $1.5$ (Mb/s) & $0.15$ (Mb/s) & $5469$ (Bit/s) \\
-\textbf{Max coverage range (km)} & $0.115$ & $0.230$ & $0.115$ & $\backsim 1$ & $\backsim 15$ \\
-
-\end{tabular}
-\end{adjustbox}
+\begin{figure}
+  \includegraphics[width=200pt]{class.png}
+\end{figure}
 
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
-\subsection{IoT Traffic}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}{The ``Smart Environment" - Wireless Technologies - Part 3}
+%---------------------------------------------------------------------------------------------------------%
+
+\begin{block}{}
+\justifying
+Adopted wireless technologies are suitable only for \textit{unconstrained} IoT devices in \textbf{short-medium} range scenarios. Experimental setup not cover all smart city and campus use cases.
+\end{block}
+
+\begin{block}{}
+\justifying
+A combination of \textit{low-band}, \textit{mid-band} and \textit{high-band} spectrum is desirable to manage all possible use cases.
+\end{block}
+
+%---------------------------------------------------------------------------------------------------------%
+\end{frame} 
+%---------------------------------------------------------------------------------------------------------%
+\section{IoT Traffic}
 %---------------------------------------------------------------------------------------------------------%
 \begin{frame}{IoT Traffic - Part 1}
 %---------------------------------------------------------------------------------------------------------%
@@ -383,7 +350,7 @@ According to their experimental results, \citet{ITPAReport} stated that:
 
 \begin{quoting}[font=itshape, begintext={``}, endtext={''\cite[par.~IV.A]{ITPAReport}}]
 \justifying
-the traffic pattern of one IoT device [...] a pattern of active/sleep communication emerges. [...] IoT active time [...] decays rapidly initially (only 5\% of sessions last longer than 5 seconds), with the maximum active time being 250 seconds in our trace. This shows that IoT activities are short-lived in general. 
+the traffic pattern of one IoT device [...] a pattern of active/sleep communication emerges. [...] IoT active time [...] decays rapidly initially (only $5\%$ of sessions last longer than $5$ seconds), with the maximum active time being $250$ seconds in our trace. This shows that IoT activities are short-lived in general. 
 \end{quoting}
 
 %---------------------------------------------------------------------------------------------------------%
@@ -430,40 +397,6 @@ According to \citet{ITPAReport}'s results, the power management approach adopted
   \caption{``Smart environment"'s scheme}
   \includegraphics[width=100pt]{PacketSize.png}
 \end{figure}
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
-
-
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{IoT Application Layer Protocol: Overview}
-%---------------------------------------------------------------------------------------------------------%
-
-\begin{itemize}
-
-\item According to \cite{REALSMARTIOT}, smart city and campus services services are based on a
-centralized architecture where a dense and heterogeneous set of IoT devices generate differ-
-ent types of data that are then delivered through suitable com-
-munication technologies to a control center, where data storage
-and processing are performed
-
-peripheral devices deployed over the urban area generate differ-
-ent types of data that are then delivered through suitable com-
-munication technologies to a control center, where data storage
-and processing are performed
-
-
-
-
-\item A very important aspect is the necessity to make
-(part of) the data collected by the urban IoT easily accessible
-by authorities and citizens,
-
-\end{itemize}
-
-
-
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
@@ -544,9 +477,9 @@ In table reported below, are reported most frequent \textit{transportation proto
 
 \begin{itemize}
 \justifying
-\item A very important aspect of an urban, or campus, IoT infrastructure is the \textbf{necessity to make data collected by the urban IoT devices easily accessible} by both authorities and citizens.
+\item A very important aspect of an urban, or campus, IoT infrastructure is the \textbf{necessity to make data collected by the urban IoT devices easily accessible} by both authorities and citizens \cite{IOTCITY}.
 
-\item In order to achieve this objective, IoT devices adopt a very well known web-based paradigm called  \textbf{Representational State Transfer} (\textbf{ReST}), which plays a very important role into \textbf{Web of Things Architecture} (\textbf{WoT}).
+\item In order to achieve this objective, IoT devices adopt a very well known web-based paradigm called  \textbf{Representational State Transfer} (\textbf{ReST}), which plays a very important role into \textbf{Web of Things Architecture} (\textbf{WoT}) \cite{IOTCITY}\cite{WOT}.
 
 \end{itemize}
 
@@ -560,13 +493,13 @@ In table reported below, are reported most frequent \textit{transportation proto
 
 \begin{itemize}
 \justifying
-\item Exploiting REST paradigm, \texttt{HTTP} and \texttt{HTTPS} are used very frequently because they facilitate both the \textbf{integration of IoT devices} with existing services currently available on the Web and the  \textbf{Web applications development}.
+\item Exploiting REST paradigm, \texttt{HTTP} and \texttt{HTTPS} are used very frequently because they facilitate both the \textbf{integration of IoT devices} with existing services currently available on the Web and the  \textbf{Web applications development} \cite{IOTCITY}\cite{WOT}.
 
-\item \texttt{HTTP} and \texttt{HTTPS} offer a \textbf{direct access} for users to IoT devices data and services, without the need for installing additional software. 
+\item \texttt{HTTP} and \texttt{HTTPS} offer a \textbf{direct access} for users to IoT devices data and services, without the need for installing additional software \cite{IOTCITY}.
 
 In fact, using a Web browser (or any \texttt{HTTP} library in the case of a software client) client are able to to directly extract, save and share smart things data and services. 
 
-\textbf{This ensures the usability of the architecture and minimizes the entry barriers for final users.}
+This ensures the usability of the architecture and minimizes the entry barriers for final users \cite{WOT}.
 \end{itemize}
 
 %---------------------------------------------------------------------------------------------------------%
@@ -579,119 +512,15 @@ In fact, using a Web browser (or any \texttt{HTTP} library in the case of a soft
 
 \begin{itemize}
 \justifying
-\item The \textbf{verbosity} and \textbf{complexity} of native \texttt{HTTPS}/\texttt{HTTP} make them \textbf{unsuitable} for constrained IoT devices. 
+\item The \textbf{verbosity} and \textbf{complexity} of native \texttt{HTTPS}/\texttt{HTTP} make them \textbf{unsuitable} for constrained IoT devices \cite{IOTCITY}. 
 
 \begin{itemize}
 \justifying
-\item In fact, the \textbf{human-readable format} of \texttt{HTTP}, which has been one of the reasons of its success in traditional networks, turns out to be a limiting factor due to the large amount of heavily correlated (and, hence, \textbf{redundant}) data.
+\item In fact, the \textbf{human-readable format} of \texttt{HTTP}, which has been one of the reasons of its success in traditional networks, turns out to be a limiting factor due to the large amount of heavily correlated (and, hence, \textbf{redundant}) data \cite{IOTCITY}.
 \end{itemize}
 
-\item \texttt{HTTPS}/\texttt{HTTP} rely upon the \texttt{TCP} transport protocol that, however, does not scale well on constrained devices, yielding poor performance for small data flows in lossy environments.
+\item \texttt{HTTPS}/\texttt{HTTP} rely upon the \texttt{TCP} transport protocol that, however, does not scale well on constrained devices, yielding poor performance for small data flows in lossy environments \cite{IOTCITY}.
 \end{itemize}
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
-\subsection{An Unbalanced Data-Set}
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{An Unbalanced Data-Set - Part 1}
-%---------------------------------------------------------------------------------------------------------%
-
-\begin{block}{}
-\justifying
-The performance and the interpretation of a IoT device classification model \textbf{depend heavily on the data} on which it was \textbf{trained}. 
-
-\begin{itemize}
-\justifying
-\item Scientific literature showed that classification model, which are trained on \textit{imbalanced datasets}, are highly susceptible to producing inaccurate results. 
-\end{itemize}
-\end{block}
-
-\begin{block}{}
-The dataset produced by researchers can be unbalanced owing to several reasons including:
-
-\begin{itemize}
-\item Too few IoT device types.
-\item \textit{Constrained} and \textit{unconstrained} protocol stack are not equally represented into dataset.
-\end{itemize}
-
-\end{block}
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{An Unbalanced Data-Set - Part 2}
-%---------------------------------------------------------------------------------------------------------%
-
-\begin{itemize}
-\justifying
-\item Generally smart city and campus services are based on a \textbf{very heterogeneous set of IoT devices}, generating \textbf{very different types of data} that have to be delivered through \textbf{suitable communication technologies}.
-
-\item For instance, possible applications can be:
-
-\begin{itemize}
-\item Structural Health of Buildings.
-\item Waste Management.
-\item Air Quality.
-\item Traffic Congestion.
-\item Noise Monitoring.
-\item City Energy Consumption.
-\item Smart Parking.
-\item Smart Lighting.
-\end{itemize}
-
-\end{itemize}
-
-\begin{block}{}
-Proposed ``\textit{Smart environment}" seem to be more suitable for a smart home rather than a smart city or campus.
-\end{block}
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{An Unbalanced Data-Set - Part 3}
-%---------------------------------------------------------------------------------------------------------%
-
-\begin{block}{}
-\justifying
-
-The ``\textit{Smart environment}" used by researchers \textit{can} be \textit{not} suitable for their purposes because is \textbf{too simple}.
-
-\begin{itemize}
-\justifying
-
-\item It includes \textbf{only} \textit{unconstrained protocol stack} which include protocols that are currently the de-facto standards for Internet communications and are commonly used by regular Internet hosts (\texttt{HTTP}/\texttt{TCP}/\texttt{IPv4}).
-
-\begin{itemize}
-\justifying
-\item In fact there is a prevalence of \texttt{HTTPS}/\texttt{HTTP} application layer protocol ($66\%$ of total IoT traffic according to \citet{ITPAReport}) and of the \texttt{TCP} transport layer protocol (representing, more or less, the $85\%$ of total transmitted packets according to \citet{ITPAReport}'s results).
-\end{itemize}
-
-\item It does \textbf{not} include any \textit{constrained protocol stack}, the low-complexity counterparts of the de-facto standards for Internet, i.e., \textbf{Constrained Application Protocol} (\texttt{CoAP}), \texttt{UDP}, and \texttt{6LoWPAN}, which are suitable even for very constrained devices.
-
-\end{itemize}
-
-\end{block}
-
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
-\subsection{Differences between IoT and Non-IoT Traffic}
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{Differences between IoT and Non-IoT Traffic}
-%---------------------------------------------------------------------------------------------------------%
-
-Experiment's results show following differences among IoT and Non-IoT traffic:
-
-\begin{description}
-\item[DNS trafﬁc] IoT devices initiate DNS queries for only a limited number of domains while non-IoT device, such as a laptop, looks for more than $300$ domain names in a course of a few hours.
-
-\item[Number of Cloud servers] IoT device communicates with less than $10$ servers on average per day while non-IoT device contacts about $500$ different servers
-\end{description}
-
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
@@ -701,19 +530,18 @@ Experiment's results show following differences among IoT and Non-IoT traffic:
 \begin{frame}{Security Problems Due To Unencrypted Traffic - Part 1}
 %---------------------------------------------------------------------------------------------------------%
 
-\begin{alertblock}{}
-\textit{IoT devices communication is properly secured?}
-\end{alertblock}
-
 \begin{itemize}
 \justifying
 
-\item According to \citet{ITPAReport}, about $45\%$ of IoT traffic is not sent over HTTPS to the servers. 
-
-\item Since the traffic transmitted using other protocols are typically not encrypted, \citet{ITPAReport}'s results indicate that a sizeable fraction of IoT traffic is \textbf{not} being securely transported over the Internet.
+\item According to \citet{ITPAReport}, about $45\%$ of IoT traffic is \textbf{not} sent over HTTPS to the servers. 
 
 \begin{itemize}
-\item The use of unencrypted protocols can leak sensitive information about users.
+\justifying
+\item Since the traffic transmitted using other protocols are typically not encrypted, \citet{ITPAReport}'s results indicate that a sizeable fraction of IoT traffic is \textbf{not} being securely transported over the Internet.
+\end{itemize}
+
+\begin{itemize}
+\item The use of unencrypted protocols can leak sensitive information about users \cite{mazhar2020characterizing}.
 \end{itemize}
 
 \end{itemize}
@@ -735,9 +563,9 @@ There may be various reasons according to which data are transmitted unencrypted
 \begin{itemize}
 \justifying
 
-\item Due to \textbf{limitations} and \textbf{constrains} in the IoT device itself. 
+\item Due to \textbf{limitations and constrains} in the IoT device itself. 
 
-\item As noted by Englehardt and Narayanan [25], IoT devices vendors may be hesitant to move to \texttt{HTTPS} if their products use any third-party resources that are \texttt{HTTP}-only. These resources are typically ads and trackers.
+\item As noted by \citet{mazhar2020characterizing}, IoT devices vendors may be hesitant to move to \texttt{HTTPS} if their products use any third-party resources that are \texttt{HTTP}-only. These resources are typically \textbf{ads} and \textbf{trackers} \cite{mazhar2020characterizing}.
 
 \item Bad design.
 
@@ -747,32 +575,168 @@ There may be various reasons according to which data are transmitted unencrypted
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
+
+\subsection{Other considerations}
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{}
+\begin{frame}{Other considerations}
 %---------------------------------------------------------------------------------------------------------%
 
+Experiment's results show following differences among IoT and Non-IoT traffic:
 
+\begin{description}
+\justifying
+\item[DNS trafﬁc] IoT devices initiate DNS queries for only a limited number of domains while non-IoT device, such as a laptop, looks for more than $300$ domain names in a course of a few hours.
 
+\item[Number of Cloud servers] IoT device communicates with less than $10$ servers on average per day while non-IoT device contacts about $500$ different servers
+\end{description}
 
+%---------------------------------------------------------------------------------------------------------%
+\end{frame} 
+%---------------------------------------------------------------------------------------------------------%
+\section{Machine learning}
+\subsection{Introduction}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}{Machine learning - Part 1}
+%---------------------------------------------------------------------------------------------------------%
 
-
-
-available technologies. From the table, it clearly
-emerges that, in general, the practical realization of most
-of such services is not hindered by technical issues, but rather
-by the lack of a widely accepted communication and service
-architecture that can abstract from the speciﬁc features of the
-single technologies and provide harmonized access to the
-services.
+\begin{block}{}
+\justifying
+Since \citet{ITPAReport} adopted a \textbf{supervised machine learning algorithms} to build their classification model, is necessary to generate a \textbf{data-set} in order to provide an appropriate input during the \textbf{learning phase}.
+\end{block}
 
 \begin{itemize}
-\item According to \citet{ITPAReport}, the set of IoT devices used for their experiments including a huge amount of \textbf{sensors}, including air quality sensors and health-care devices. 
+\justifying
+\item \citet{ITPAReport} collected traffic over $3$ weeks generated from the ``\textit{Smart Environment}".
+\begin{itemize}
+\item 2 weeks of data was used for \textit{training} and \textit{validation}.
+\item last week was used for \textit{test}.
+\end{itemize}
 
-As known, aforementioned kind of devices generate a huge amount of data modelled as \textbf{time series}, that is an array of values indexed by time. 
+\item Is very important to precise that collected data are \textbf{time series}, where each instance, indexed by time, contains several \textbf{attributes} (or \textbf{features}) like \textit{sleep time}, \textit{active time}, \textit{average packet size} and so on.
 
-According to \citet{TIMESERIES}, the stream of data generated by all these IoT sensors is generally interfaced with database, through a so-called \textit{southbound} interface, using HTTP RESTful protocol. Similarly, all applications requiring access to the data stored in the database, using the same protocol, through a so-called northbound interface. 
+\item Clearly, every instance contains a \textbf{label} identifying the IoT device, which is necessary during supervised learning.
+\end{itemize}
+
+%---------------------------------------------------------------------------------------------------------%
+\end{frame} 
+%---------------------------------------------------------------------------------------------------------%
+\subsection{An Unbalanced Data-Set}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}{An Unbalanced Data-Set - Part 1}
+%---------------------------------------------------------------------------------------------------------%
+
+\begin{block}{}
+\justifying
+The performance and the interpretation of a IoT device classification model \textbf{depend heavily on the data} on which it was \textbf{trained}. 
+
+\begin{itemize}
+\justifying
+\item Scientific literature showed that classification model, which are trained on \textit{imbalanced datasets}, are highly susceptible to producing inaccurate results. 
+\end{itemize}
+\end{block}
+
+\begin{alertblock}{}
+\begin{itemize}
+\justifying
+\item Could \citet{ITPAReport}'s dataset be unbalanced? 
+
+\item Could \citet{ITPAReport}'s classification model be unsuitable to correctly classify IoT devices in a real smart-city and campus scenario?
+\end{itemize}
+\end{alertblock}
+
+%---------------------------------------------------------------------------------------------------------%
+\end{frame} 
+%---------------------------------------------------------------------------------------------------------%
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}{An Unbalanced Data-Set - Part 2}
+%---------------------------------------------------------------------------------------------------------%
+
+\begin{itemize}
+\justifying
+\item Generally smart city and campus services are based on a \textbf{very heterogeneous set of IoT devices}, generating \textbf{very different types of data} that have to be delivered through \textbf{suitable communication technologies}.
+
+\begin{itemize}
+\item For instance, possible IoT use cases can be:
+
+\begin{itemize}
+\item Structural Health of Buildings.
+\item Waste Management.
+\item Air Quality.
+\item Traffic Congestion.
+\item Noise Monitoring.
+\item City Energy Consumption.
+\item Smart Parking.
+\item Smart Lighting.
+\end{itemize}
 
 \end{itemize}
+\end{itemize}
+
+\begin{block}{}
+\begin{itemize}
+\item Proposed ``\textit{Smart environment}" simulates too few IoT use cases relating to a smart-city or campus.
+\item Proposed environment is more suitable for a \textit{smart-home} rather than a smart-city or campus.
+\end{itemize}
+
+\end{block}
+
+%---------------------------------------------------------------------------------------------------------%
+\end{frame} 
+%---------------------------------------------------------------------------------------------------------%
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}{An Unbalanced Data-Set - Part 3}
+%---------------------------------------------------------------------------------------------------------%
+
+\begin{itemize}
+\justifying
+\item Too few use cases. Only short/medium range use cases.
+
+\item It includes \textbf{only} \textit{unconstrained protocol stack}, that is protocols that are currently the de-facto standards for Internet communications and are commonly used by regular Internet hosts (\texttt{HTTP}/\texttt{TCP}/\texttt{IPv4}). These protocol are suitable only for unconstrained IoT devices \cite{IOTCITY}.
+
+\begin{itemize}
+\justifying
+\item In fact there is a prevalence of \texttt{HTTPS}/\texttt{HTTP} application layer protocol ($66\%$ of total IoT traffic according to \citet{ITPAReport}) and of the \texttt{TCP} transport layer protocol (representing, more or less, the $85\%$ of total transmitted packets according to \citet{ITPAReport}'s results).
+\end{itemize}
+
+\item It does \textbf{not} include any \textit{constrained protocol stack}, the low-complexity counterparts of the de-facto standards for Internet, i.e., \textbf{Constrained Application Protocol} (\texttt{CoAP}), \texttt{UDP}, and \texttt{6LoWPAN}, which are suitable even for very constrained devices \cite{IOTCITY}.
+
+\end{itemize}
+
+%---------------------------------------------------------------------------------------------------------%
+\end{frame} 
+%---------------------------------------------------------------------------------------------------------%
+\subsection{Validation technique}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}{Validation technique - Part 1}
+%---------------------------------------------------------------------------------------------------------%
+
+\citet{ITPAReport} state that:
+\justifying
+\begin{quoting}[font=itshape, begintext={``}, endtext={''}]
+Our cross-validation method randomly splits the dataset into training (90\% of total instances) and validation (10\% of total instances) sets. This cross-validation is repeated 10 times. The results are then averaged to produce a single performance metric. 
+\end{quoting}
+
+\begin{block}{}
+To perform validation step, \citet{ITPAReport} used the \textbf{10-fold cross-validation method}.
+\end{block}
+
+
+%---------------------------------------------------------------------------------------------------------%
+\end{frame} 
+%---------------------------------------------------------------------------------------------------------%
+
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}{Validation technique - Part 2}
+%---------------------------------------------------------------------------------------------------------%
+
+\begin{block}{}
+Since their datasets contains \textbf{time-series data}, in order to take into account the time-sensitiveness of data, is required a validation technique, that is a \textit{technique which defines a specific way to split available data in train, validation and test sets}, capable \textbf{to preserve the temporal order of data}, preventing for example that the testing set contains data antecedent to the training set.
+\end{block}
+
+\begin{block}{}
+Traditional methods of validation, like 10-fold cross-validation method, are unusable in this context.
+\end{block}
+
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
@@ -783,9 +747,7 @@ According to \citet{TIMESERIES}, the stream of data generated by all these IoT s
 
 
 
-
-
-\begin{frame}[noframenumbering,shrink=15]{Some references}
+\begin{frame}[noframenumbering,shrink=15]{References}
 \printbibliography
 \end{frame}
 \end{document}
