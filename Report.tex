@@ -722,39 +722,25 @@ The performance and the interpretation of a IoT device classification model \tex
 %---------------------------------------------------------------------------------------------------------%
 \subsection{Validation technique}
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{Validation technique - Part 1}
+\begin{frame}{Validation technique}
 %---------------------------------------------------------------------------------------------------------%
 
-\citet{ITPAReport} state that:
+\begin{quoting}[font=itshape, begintext={``}, endtext={''\\\textbf{\citet{ITPAReport}}}]
 \justifying
-\begin{quoting}[font=itshape, begintext={``}, endtext={''}]
 Our cross-validation method randomly splits the dataset into training (90\% of total instances) and validation (10\% of total instances) sets. This cross-validation is repeated 10 times. The results are then averaged to produce a single performance metric. 
 \end{quoting}
 
-\begin{block}{}
-To perform validation step, \citet{ITPAReport} used the \textbf{10-fold cross-validation method}.
-\end{block}
+\begin{itemize}
+\justifying
+\item Since their datasets contains \textbf{time-series data}, in order to take into account the time-sensitiveness of data, is required a validation technique, that is a \textit{technique which defines a specific way to split available data in train, validation and test sets}, capable \textbf{to preserve the temporal order of data}, preventing for example that the testing set contains data antecedent to the training set.
 
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
-
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{Validation technique - Part 2}
-%---------------------------------------------------------------------------------------------------------%
-
-\begin{block}{}
-Since their datasets contains \textbf{time-series data}, in order to take into account the time-sensitiveness of data, is required a validation technique, that is a \textit{technique which defines a specific way to split available data in train, validation and test sets}, capable \textbf{to preserve the temporal order of data}, preventing for example that the testing set contains data antecedent to the training set.
-\end{block}
-
-\begin{block}{}
-Traditional methods of validation, like 10-fold cross-validation method, are unusable in this context.
-\end{block}
+\item Traditional methods of validation, like \textit{10-fold cross-validation} method, are unusable in this context.
+\end{itemize}
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
+
 
 
 
