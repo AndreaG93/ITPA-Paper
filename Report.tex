@@ -29,6 +29,8 @@
 \usepackage{tikz}
 \usepackage{ragged2e}
 \usepackage{adjustbox}
+\usepackage{mwe}
+\usepackage{wrapfig}
 \justifying
 
 %-------------------------------------------------------
@@ -86,49 +88,62 @@
 \section{Introduction}
 \subsection{Research's goal}
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{Research's goal - Part 1}
+\begin{frame}{Research's goal}
 %---------------------------------------------------------------------------------------------------------%
 
-According to \citet{ITPAReport}, research's goal is to:
+\begin{alertblock}{}
+\justifying
+What is the research's goal?
+\end{alertblock}
 
-\begin{quoting}[font=itshape, begintext={``}, endtext={''}]
+\begin{quoting}[font=itshape, begintext={``}, endtext={''\\\textbf{\citet{ITPAReport}}}]
 [...] develop a classification method that can not only distinguish IoT from non-IoT trafﬁc, but also identify specific IoT devices with over 95\% accuracy.
 \end{quoting}
 
 \begin{alertblock}{}
 \justifying
-What is the reason according to which is important to profile IoT traffic?
+Why is it necessary to built that classification model?
 \end{alertblock}
 
-\begin{enumerate}
-\justifying
-\item To understand IoT devices ``\textit{normal}" \textbf{traffic pattern} in terms of their \textbf{activity pattern} (traffic rate, idle durations, etc.) and \textbf{signalling overheads} (\texttt{DNS}, \texttt{NTP}, etc.). 
-
-\item To enhance \textbf{cyber-security} involving IoT devices which administration belong to \textbf{different authorities}. 
-
-According to \citet{ITPAReport}, is possible to improve security deploying a network-level security mechanisms which, analysing traffic patterns, is capable to \textbf{identify attacks knowing the normal traffic pattern of monitored IoT devices}.
-
-\end{enumerate}
-
-
-
+\begin{quoting}[font=itshape, begintext={``}, endtext={''\\\textbf{\citet{ITPAReport}}}]
+The most compelling reason for profiling IoT traffic is to enhance cyber-security. [...] IoT devices are by their nature easier to infiltrate [...] and used to launch large-scale attacks.
+\end{quoting}
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
 
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{Research's goal - - Part 2}
+\begin{frame}{Research's goal}
 %---------------------------------------------------------------------------------------------------------%
 
-In other words, research's goal is to build an classification model for IoT devices based on \textbf{machine learning} techniques, which building passes through following steps:
-
-\begin{enumerate}
+\begin{itemize}
 \justifying
-\item Collect data from an IoT environment.
-\item Characterize traffic pattern corresponding to the various IoT devices.
-\item Develop a classification technique that learns the behaviour of an IoT device and is able to identify it based on its traffic pattern.
-\end{enumerate}
+\item In other words, if is possible to built a classification model capable to understand IoT devices ``\textit{normal}" \textbf{traffic pattern}, it will be possible to deploy a network-level security mechanisms to identify attacks analysing traffic patterns.
+
+\item According to the authors, that classification model is intended to be used inside a smart cities and campus environments.
+\end{itemize}
+
+\begin{alertblock}{}
+\justifying
+How the authors have built their classification model?
+\end{alertblock}
+
+\begin{itemize}
+\justifying
+\item Using a \textbf{supervised machine learning} approach, exploiting, form the implementation point of view, a collection of tools and algorithms regarding data analysis called \texttt{Weka}.
+
+All data were been analysed using \textbf{Random Forest} algorithm.
+\end{itemize}
+
+\begin{alertblock}{}
+\justifying
+What is the first step necessary to start the building of this classification model?
+\end{alertblock}
+
+\begin{itemize}
+\item \textbf{Collect data}!
+\end{itemize}
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
@@ -139,25 +154,25 @@ In other words, research's goal is to build an classification model for IoT devi
 \begin{frame}{The ``Smart Environment" - Overview - Part 1}
 %---------------------------------------------------------------------------------------------------------%
 
-\begin{itemize}
-\justifying
-\item In order to collect data, \citet{ITPAReport} built a ``\textit{Smart Environment}" to simulate a real usage scenario including:
+
+\begin{wrapfigure}{l}{0.5\textwidth}
+\centering
+\includegraphics[width=170pt]{Topology.png}
+\caption{The experimental setup.}
+\end{wrapfigure}
+
+In order to collect data, researchers instrumented an environment with several IoT devices in order \textit{to simulate a real usage scenario}. 
+
+This environment, called ``\textit{Smart Environment}", is made up of: 
 
 \begin{itemize}
 \justifying
-\item $21$ unique IoT devices representing different categories, like \textbf{cameras}, \textbf{healthcare devices}, \textbf{hub}, \textbf{air quality sensors} and so on.
-
+\item $21$ unique IoT devices representing 7 different categories: \textbf{cameras}, \textbf{healthcare devices}, \textbf{hubs}, \textbf{air quality sensors}, \textbf{Switches \& Triggers}, \textbf{Light Bulbs} and the generic \textbf{Electronics}.
 \item A router, the \textsc{TP Link Archer C7}\footnote{\tiny\url{https://www.tp-link.com/it/home-networking/wifi-router/archer-c7/\#overview}}
 
-\item Several \textbf{non-IoT} devices were also used, such as laptops, mobile phones and tablet.
+\item Several \textbf{non-IoT} devices.
 
 \end{itemize}
-\end{itemize}
-
-\begin{figure}
-  \caption{``Smart environment"'s scheme}
-  \includegraphics[width=100pt]{Topology.png}
-\end{figure}
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
@@ -166,22 +181,30 @@ In other words, research's goal is to build an classification model for IoT devi
 \begin{frame}{The ``Smart Environment" - Overview - Part 2}
 %---------------------------------------------------------------------------------------------------------%
 
-\begin{block}{}
+\begin{alertblock}{}
 \justifying
-Several IoT devices used by \citet{ITPAReport} for their experiments \textbf{are battery operated}. 
+What is the main feature of IoT devices used in that experimental environment?
+\end{alertblock}
 
-For instance:
+\begin{itemize}
+\item Many of them are \textbf{battery operated}.
+
+For example, following devices are powered either by $1.5$ \textit{V} alkaline cells (AAA) or by a lithium-ion battery:
 
 \begin{itemize}
 \justifying
-\item The \textit{Withings Smart scale} device is powered by $4$ $1.5$ \textit{V} alkaline cells (AAA).\footnote{\url{https://www.withings.com/it/en/body}}
+\item The \textit{Withings Smart scale}.\footnote{\url{https://www.withings.com/it/en/body}}
 
-\item Similarly, the \textit{Netatmo Weather station} device is powered by $2$ $1.5$ \textit{V} alkaline cells (AAA) with an \textbf{estimated autonomy of about 2 years}.\footnote{\url{https://www.netatmo.com/it-it/weather/weatherstation/specifications}
+\item The \textit{Netatmo Weather station} \textit{(estimated autonomy of about 2 years)}.\footnote{\url{https://www.netatmo.com/it-it/weather/weatherstation/specifications}
 }
-\item The \textit{Blipcare blood pressure meter} device is powered by an internal battery.\footnote{\url{http://www.blipcare.com/}}
+\item The \textit{Blipcare blood pressure meter}.\footnote{\url{http://www.blipcare.com/}}
+\end{itemize} 
 \end{itemize} 
 
-\end{block}
+\begin{alertblock}{}
+\justifying
+Due to the aforementioned constrain about IoT devices, the main design goal of the ``\textit{Smart Environment}" is to \textbf{preserve battery life}. How this goal is achieved according to results and information provided by researchers?
+\end{alertblock} 
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
@@ -191,39 +214,54 @@ For instance:
 \begin{frame}{The ``Smart Environment" - Architecture - Part 1}
 %---------------------------------------------------------------------------------------------------------%
 
-The architecture of the ``Smart Environment"  can be splitted into:
+\begin{itemize}
+\justifying
+\item Similarly to many \texttt{LPWAN} implementations (\texttt{LoRaWAN}, \texttt{Sigfox}), proposed architecture can be splitted into:
 
 \begin{description}
 \justifying
-\item[\textbf{Front-end}] which contains the \textit{router} and the \textit{IoT/non-IoT devices}. Both \textit{wireless} and \textit{wired} interfaces are used.
+\item[\textbf{Front-end}] which contains the \textit{router} and the \textit{IoT/non-IoT devices}. 
+
+\begin{itemize}
+\item Both \textit{wireless} and \textit{wired} interfaces are used.
+\end{itemize}
 
 \item[\textbf{Back-end}] represented by the \textit{cloud}. 
 
-IoT devices also rely on cloud back-end services for \textbf{data storage}, \textbf{backup}, \textbf{firmware updates}, \textbf{remote access and integration}, and other services, like \textbf{media streaming} \cite{mazhar2020characterizing}.
-
-\end{description}
-
-\begin{block}{}
-\justifying
 \begin{itemize}
+\justifying
+\item IoT devices rely on cloud back-end services for \textbf{data storage}, \textbf{backup}, \textbf{firmware updates}, \textbf{media streaming} \cite{mazhar2020characterizing} ... and \textbf{remote access and integration using RESTful Web API} (exploiting the so-called \textit{cloud-based connectivity pattern}).
+\end{itemize}
+\end{description}
+\end{itemize}
 
-\item Proposed architecture is intended for \textbf{cloud-native} IoT applications and services \cite{TheSeminalRoleEdgeNativeApplications}.
+%---------------------------------------------------------------------------------------------------------%
+\end{frame} 
+%---------------------------------------------------------------------------------------------------------%
 
-\item Cloud resources are exploited through so-called \textbf{cyber-foraging techniques} in order to overcome the very strictly constrains of any IoT devices. \cite{TheSeminalRoleEdgeNativeApplications}.
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}{The ``Smart Environment" - Architecture - Part 2}
+%---------------------------------------------------------------------------------------------------------%
+
+\begin{itemize}
+\justifying
+\item In order to preserve battery life, expensive and complex task are \textbf{offloaded} to the back-end system, that is to the cloud. 
+
+In other words, cloud resources are exploited through so-called \textbf{cyber-foraging techniques} in order to overcome the very strictly constrains of IoT devices. \cite{TheSeminalRoleEdgeNativeApplications}. 
+
+\item Since the cloud represents the main execution site for tasks and services, proposed architecture is intended for \textbf{cloud-native} IoT applications and services \cite{TheSeminalRoleEdgeNativeApplications}.
 
 \end{itemize}
- 
-\end{block}
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{The ``Smart Environment" - Architecture - Part 2}
+\begin{frame}{The ``Smart Environment" - Architecture - Part 3}
 %---------------------------------------------------------------------------------------------------------%
 
 \begin{block}{}
-The implementation of the ``\textit{Smart Environment}" is based on a \textbf{star network topology}.
+Proposed architecture is based on a \textbf{star network topology}.
 \end{block}
 
 The use of a star network topology allows us to:
@@ -232,41 +270,102 @@ The use of a star network topology allows us to:
 \justifying
 \item \textbf{Preserve battery life} of IoT devices because they \textbf{do not have to forward} other nodes data; in other words, \textit{any IoT device receives, or transmits, only its own data} \cite{LoRaWAN}.
 
-\item \textbf{Decrease the complexity} of the network \cite{LoRaWAN} making infrastructure deployment cost low \cite{nokia}.
+\item \textbf{Decrease the complexity} of the network \cite{LoRaWAN} making infrastructure deployment cost low.
 
 \end{itemize}
-
-\begin{block}{}
-\justifying
-Also the implementation of \texttt{LoRaWAN} network is based on the star network topology, and mostly, stars-of-stars network \cite{LoRaWAN}. 
-
-As known \texttt{LoRaWAN} network belongs to \texttt{LPWAN} category, \textit{which are specifically designed to achieve the need for low power, long-range, low bit error rate, and low cost} needed in IoT context. 
-\end{block}
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
+\subsection{IoT Traffic}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}{IoT Traffic - Part 1}
+%---------------------------------------------------------------------------------------------------------%
+
+\begin{quoting}[font=itshape, begintext={``}, endtext={''\\\textbf{\citet{ITPAReport}}}]
+\justifying
+[...] if we consider only the load imposed by the IoT devices, then there is a dramatic reduction in the peak load ($1$ Mbps) and average loads ($66$ Kbps), [...], implying that traffic generated by IoT devices is small compared to traditional non-IoT traffic. 
+\end{quoting}
+
+\begin{quoting}[font=itshape, begintext={``}, endtext={''\\\textbf{\citet{ITPAReport}}}]
+\justifying
+the traffic pattern of one IoT device [...] a pattern of active/sleep communication emerges. [...] IoT active time [...] decays rapidly initially (only $5\%$ of sessions last longer than $5$ seconds), with the maximum active time being $250$ seconds in our trace. This shows that IoT activities are short-lived in general. 
+\end{quoting}
+
+%---------------------------------------------------------------------------------------------------------%
+\end{frame} 
+%---------------------------------------------------------------------------------------------------------%
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}{IoT Traffic - Part 2}
+%---------------------------------------------------------------------------------------------------------%
+
+\begin{itemize}
+\justifying
+\item Since many IoT devices are battery powered, in order to maximize energy efficiency, results provided by researchers state that the power management approach adopted by IoT devices is based on \textbf{periodic sleep}, during which radio transceiver are turned off.
+\end{itemize}
+
+\begin{figure}
+  \includegraphics[width=150pt, height=80pt]{SleepTime.png}
+  \caption{Load of LiFX light bulb device.}
+  \label{fig1}
+\end{figure}
+
+%---------------------------------------------------------------------------------------------------------%
+\end{frame} 
+%---------------------------------------------------------------------------------------------------------%
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}{IoT Traffic - Part 3}
+%---------------------------------------------------------------------------------------------------------%
+
+\begin{itemize}
+\justifying
+\item A very interesting observation regards packet size. Experimental results state that only the $10\%$ of packets are larger than $500$ Bytes.
+
+
+
+\begin{figure}
+  \includegraphics[width=80pt]{PacketSize.png}
+\end{figure}
+
+\begin{quoting}[font=itshape, begintext={``}, endtext={''\\\textbf{\citet{ITPAReport}}}]
+\justifying
+More than 75\% of IoT sessions transfer less than $1$ KB, and only fewer than 1\% of the sessions exchange
+more than 10 KB, suggesting that the majority of IoT devices generate only a small burst of traffic.
+\end{quoting}
+
+\end{itemize}
+
+\begin{alertblock}{}
+\justifying
+From these results, is clear that we do not need of \textbf{high transfer rates}. But...
+\end{alertblock}
+
+%---------------------------------------------------------------------------------------------------------%
+\end{frame} 
+%---------------------------------------------------------------------------------------------------------%
+
 \subsection{Wireless Technologies}
 %---------------------------------------------------------------------------------------------------------%
 \begin{frame}{The ``Smart Environment" - Wireless Technologies - Part 1}
 %---------------------------------------------------------------------------------------------------------%
 
-According to vendor's specifications regarding the \textsc{TP Link Archer C7}, is possible to know that aforementioned router supports following protocols:
+\begin{itemize}
+\justifying
+\item Researchers state that all wireless IoT devices support \texttt{IEEE 802.11} as wireless technologies.
+
+\item Researchers did \textit{not} specify which \textbf{version} of IEEE 802.11 standard has been effectively used. Moreover, we don't know with which \textbf{frequencies} data has been transmitted.
+
+\begin{itemize}
+\justifying
+\item However we can learn more from the vendor's specifications regarding the \textsc{TP Link Archer C7}, which supports following protocols:
 
 \begin{itemize}
 \item \texttt{IEEE 802.11ac/n/a} at $5$ GHz
 \item \texttt{IEEE 802.11n/b/g} at $2.4$ GHz
 \end{itemize}
+\end{itemize}
 
-\begin{block}{}
-Researchers use \texttt{IEEE 802.11} as \textbf{media access control} (\texttt{MAC}) and \textbf{physical layer} (\texttt{PHY}) protocol.
-\end{block}
-
-\begin{block}{}
-Researchers did \textit{not} specify which \textbf{version} of IEEE 802.11 standard has been effectively used. 
-
-We don't know with which \textbf{frequencies} data has been transmitted.
-\end{block}
+\end{itemize}
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
@@ -277,16 +376,19 @@ We don't know with which \textbf{frequencies} data has been transmitted.
 
 \begin{block}{}
 \justifying
-Above wireless technologies are \textbf{not} fully optimized for IoT business models and devices used in \textbf{smart cities} and \textbf{campuses}.
+
+\texttt{IEEE 802.11} wireless technologies can \textbf{not} be fully optimized for IoT business models and devices used in \textbf{smart cities} and \textbf{campuses}.
 \end{block}
 
 \begin{itemize}
 \justifying
 \item Despite high reliability, low latency, and high transfer rates (using \texttt{802.11ac} $5$ GHz we can achieve $1300$ Mbps), due to their \textbf{inherent complexity} and \textbf{energy consumption} are generally not suitable for all IoT nodes \cite{IOTCITY}.
 
-Generally, \textit{constrained} IoT devices requires \textbf{low power} and \textbf{less data-rate} \cite{nokia}; therefore  \texttt{IEEE 802.15.4}, \texttt{IEEE 802.11ah} or \texttt{LoRaWAN} can be better choice \cite{IOTCITY}.
+\begin{itemize}
+\item All results regarding IoT traffic suggest that IoT devices requires \textbf{low power} and \textbf{less data-rate}. In this context, any \texttt{LPWAN} solution, like \texttt{LoRaWAN}, can be a better choice \cite{IOTCITY}.
+\end{itemize}
 
-\item These technologies provide a \textbf{short/medium coverage} with \textbf{100-to-1000} meters range \cite{LoRaWAN}. Provided coverage range can be not enough to fulfil all use cases.
+\item These technologies provide a \textbf{short/medium coverage} with \textbf{100-to-1000} meters range \cite{LoRaWAN}. Provided coverage range can be not enough to fulfil all use cases inside a smart-city environment.
 
 \begin{itemize}
 
@@ -304,12 +406,11 @@ Generally, \textit{constrained} IoT devices requires \textbf{low power} and \tex
 \begin{frame}{The ``Smart Environment" - Wireless Technologies - Part 3}
 %---------------------------------------------------------------------------------------------------------%
 
-\begin{block}{}
+\begin{itemize}
 \justifying
-Utilizing sub-1 GHz bands is possible to provide \textbf{better  propagation characteristics} in outdoor scenarios. 
 
-\textbf{Low frequencies signal are less affected by obstacles presence.}
-\end{block}
+\item Utilizing sub-1 GHz bands is possible to provide \textbf{better  propagation characteristics} in outdoor scenarios. \textbf{Low frequencies signal are less affected by obstacles presence.}
+\end{itemize}
 
 \begin{figure}
   \includegraphics[width=200pt]{class.png}
@@ -325,99 +426,22 @@ Utilizing sub-1 GHz bands is possible to provide \textbf{better  propagation cha
 
 \begin{block}{}
 \justifying
-Adopted wireless technologies are suitable only for \textit{unconstrained} IoT devices in \textbf{short-medium} range scenarios. Experimental setup not cover all smart city and campus use cases.
-\end{block}
+Adopted wireless technologies are suitable only for \textit{unconstrained} IoT devices which requiring \textbf{short-medium} range scenarios. 
 
-\begin{block}{}
-\justifying
-A combination of \textit{low-band}, \textit{mid-band} and \textit{high-band} spectrum is desirable to manage all possible use cases.
+Seem that experimental setup not cover all smart-city and campus use cases...
 \end{block}
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
-\section{IoT Traffic}
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{IoT Traffic - Part 1}
-%---------------------------------------------------------------------------------------------------------%
 
-According to their experimental results, \citet{ITPAReport} stated that:
-
-\begin{quoting}[font=itshape, begintext={``}, endtext={''\cite[par.~IV.A]{ITPAReport}}]
-\justifying
-[...] if we consider only the load imposed by the IoT devices, then there is a dramatic reduction in the peak load ($1$ Mbps) and average loads ($66$ Kbps), [...], implying that traffic generated by IoT devices is small compared to traditional non-IoT traffic. 
-\end{quoting}
-
-\begin{quoting}[font=itshape, begintext={``}, endtext={''\cite[par.~IV.A]{ITPAReport}}]
-\justifying
-the traffic pattern of one IoT device [...] a pattern of active/sleep communication emerges. [...] IoT active time [...] decays rapidly initially (only $5\%$ of sessions last longer than $5$ seconds), with the maximum active time being $250$ seconds in our trace. This shows that IoT activities are short-lived in general. 
-\end{quoting}
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{IoT Traffic - Part 2}
-%---------------------------------------------------------------------------------------------------------%
-
-\begin{block}{}
-\justifying
-Since many IoT devices are battery powered, \textbf{maximize energy efficiency}, in order to \textbf{preserve devices lifetime}, is critical. 
-\end{block}
-
-\begin{block}{}
-\justifying
-According to \citet{ITPAReport}'s results, the power management approach adopted by IoT devices is based on \textbf{periodic sleep}, during which radio transceiver are turned off.
-\end{block}
-
-\begin{figure}
-  \includegraphics[width=150pt, height=80pt]{SleepTime.png}
-  \caption{Load of LiFX light bulb device.}
-  \label{fig1}
-\end{figure}
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{IoT Traffic - Part 3}
-%---------------------------------------------------------------------------------------------------------%
-
-\begin{itemize}
-\justifying
-\item A very interesting observation by \citet{ITPAReport} made by regard packet size, according to which only the $10\%$ of packets are larger than $500$ Bytes.
-
-\begin{itemize}
-\item \textbf{header-overhead}, caused by \textbf{short packets transmission}, can occur frequently.
-\end{itemize}
-
-\end{itemize}
-
-\begin{figure}
-  \caption{``Smart environment"'s scheme}
-  \includegraphics[width=100pt]{PacketSize.png}
-\end{figure}
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
 \section{IoT Application Layer Protocols}
 \subsection{The Most Dominant Application Layer Protocols}
 %---------------------------------------------------------------------------------------------------------%
-\begin{frame}{The Most Dominant Application Layer Protocols - Part 1}
+\begin{frame}{The Most Dominant Application Layer Protocols}
 %---------------------------------------------------------------------------------------------------------%
 
-\begin{figure}
-  \includegraphics[width=250pt]{PacketType.png}
-  \caption{Probability histogram of destination port numbers for IoT packets destined to both the local network and the Internet.}
-\end{figure}
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{The Most Dominant Application Layer Protocols - Part 2}
-%---------------------------------------------------------------------------------------------------------%
+Experimental results regarding the \textbf{application layer protocol} (inferred using the destination port numbers) that IoT devices use to communicate, show that:
 
 \begin{description}
 \justifying
@@ -428,38 +452,11 @@ According to \citet{ITPAReport}'s results, the power management approach adopted
 
 \item[\texttt{SSDP}] (\texttt{UDP} port $1900$) is the next most dominant application layer protocol representing the $8\%$ of traffic.
 
-\begin{itemize}
-\item SSDP, which stands for \textbf{Simple Service Discovery Protocol}, is used to for \textit{advertisement} and \textit{discovery} purposes of network services without the assistance of server-based configuration mechanisms, such as \texttt{DHCP} or \texttt{DNS}.
-\end{itemize}
-
 \item[\texttt{RTMP}] (\texttt{TCP} port $1935$) represent the fourth most dominant protocol representing the $7\%$ of traffic
 
-\begin{itemize}
-\item \texttt{RTMP}, which stands for \textbf{Real-Time Messaging Protocol}, is a proprietary protocol used for streaming audio, video and data over the Internet, generally used by cameras. It is owned by Adobe.
-\end{itemize}
-
-\end{description}
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{The Most Dominant Application Layer Protocols - Part 3}
-%---------------------------------------------------------------------------------------------------------%
-
-\begin{description}
-\justifying
 \item[\texttt{DNS}] (\texttt{UDP} port $53$) represents less than $5/4\%$ of total traffic.
 
 \item[\texttt{NTP}] (\texttt{UDP} port $123$) constitutes less than $2/3\%$ of IoT traffic.
-
-\item[Application specific] \citet{ITPAReport}'s results shows that, regarding remaining IoT traffic, each IoT device use an own \textbf{application-specific} protocol. 
-
-In table reported below, are reported most frequent \textit{transportation protocol} and \textit{port number}.
-
-\begin{figure}
-  \includegraphics[width=250pt]{port.png}
-\end{figure}
 
 \end{description}
 
@@ -472,17 +469,22 @@ In table reported below, are reported most frequent \textit{transportation proto
 %---------------------------------------------------------------------------------------------------------%
 
 \begin{alertblock}{}
-\textit{Why results that \texttt{HTTPS} and \texttt{HTTP} are the most used protocols by IoT devices?}
+\textit{Why \texttt{HTTPS} and \texttt{HTTP} are the most used protocols?}
 \end{alertblock}
 
 \begin{itemize}
 \justifying
-\item A very important aspect of an urban, or campus, IoT infrastructure is the \textbf{necessity to make data collected by the urban IoT devices easily accessible} by both authorities and citizens \cite{IOTCITY}.
+\item A very important aspect of an urban, or campus, IoT infrastructure is the \textbf{necessity to make data collected by the urban IoT devices easily accessible} by both authorities and citizens \cite{IOTCITY}. 
 
+\item Generally, IoT devices do not conform to a unified \textit{application programming interface} (\texttt{API}) so that a developer has to learn various protocols and APIs of each IoT device. 
+
+Therefore, in order to develop IoT applications, in order to integrate a lot of heterogeneous communication protocols and system software, is still complex and costly. 
+
+\begin{itemize}
+\justifying
 \item In order to achieve this objective, IoT devices adopt a very well known web-based paradigm called  \textbf{Representational State Transfer} (\textbf{ReST}), which plays a very important role into \textbf{Web of Things Architecture} (\textbf{WoT}) \cite{IOTCITY}\cite{WOT}.
-
 \end{itemize}
-
+\end{itemize}
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
@@ -493,18 +495,40 @@ In table reported below, are reported most frequent \textit{transportation proto
 
 \begin{itemize}
 \justifying
-\item Exploiting REST paradigm, \texttt{HTTP} and \texttt{HTTPS} are used very frequently because they facilitate both the \textbf{integration of IoT devices} with existing services currently available on the Web and the  \textbf{Web applications development} \cite{IOTCITY}\cite{WOT}.
+\item Exploiting REST paradigm, \texttt{HTTP} and \texttt{HTTPS} are used very frequently because they facilitate both the \textbf{integration of IoT devices} with existing services currently available on the Web and the \textbf{Web applications development} \cite{IOTCITY}\cite{WOT}.
 
+\begin{itemize}
 \item \texttt{HTTP} and \texttt{HTTPS} offer a \textbf{direct access} for users to IoT devices data and services, without the need for installing additional software \cite{IOTCITY}.
 
-In fact, using a Web browser (or any \texttt{HTTP} library in the case of a software client) client are able to to directly extract, save and share smart things data and services. 
-
-This ensures the usability of the architecture and minimizes the entry barriers for final users \cite{WOT}.
+In fact, using a Web browser (or any \texttt{HTTP} library in the case of a software client) client are able to to directly extract, save and share smart things data and services \cite{WOT}.
+\end{itemize}
 \end{itemize}
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
+\subsection{Not only \texttt{HTTP}}
+%---------------------------------------------------------------------------------------------------------%
+\begin{frame}{Not only \texttt{HTTP}}
+%---------------------------------------------------------------------------------------------------------%
+
+\begin{itemize}
+\item Not all IoT devices support \texttt{HTTPS}/\texttt{HTTP} or support RESTful paradigm. 
+
+\item Results shows that, regarding remaining IoT traffic, several IoT device use an own \textbf{application-specific} protocol. 
+
+\begin{figure}
+  \includegraphics[width=250pt]{port.png}
+\end{figure}
+
+\end{itemize}
+
+
+%---------------------------------------------------------------------------------------------------------%
+\end{frame} 
+%---------------------------------------------------------------------------------------------------------%
+
+
 \subsection{The disadvantages of \texttt{HTTP}}
 %---------------------------------------------------------------------------------------------------------%
 \begin{frame}{The disadvantages of \texttt{HTTP}}
@@ -520,11 +544,20 @@ This ensures the usability of the architecture and minimizes the entry barriers 
 \end{itemize}
 
 \item \texttt{HTTPS}/\texttt{HTTP} rely upon the \texttt{TCP} transport protocol that, however, does not scale well on constrained devices, yielding poor performance for small data flows in lossy environments \cite{IOTCITY}.
+
+\item In a Smart City environment, can be \textbf{not} possible to install a full stack of \texttt{HTTP} into resource-constrained devices or sensors. 
 \end{itemize}
+
+\begin{block}{}
+\justifying
+Seem that experimental setup not cover all smart-city and campus use cases...
+\end{block}
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
 %---------------------------------------------------------------------------------------------------------%
+
+
 \subsection{Security Problems Due To Unencrypted Traffic}
 %---------------------------------------------------------------------------------------------------------%
 \begin{frame}{Security Problems Due To Unencrypted Traffic - Part 1}
@@ -565,30 +598,12 @@ There may be various reasons according to which data are transmitted unencrypted
 
 \item Due to \textbf{limitations and constrains} in the IoT device itself. 
 
-\item As noted by \citet{mazhar2020characterizing}, IoT devices vendors may be hesitant to move to \texttt{HTTPS} if their products use any third-party resources that are \texttt{HTTP}-only. These resources are typically \textbf{ads} and \textbf{trackers} \cite{mazhar2020characterizing}.
+\item As noted by \citet{mazhar2020characterizing}, IoT devices vendors may be hesitant to move to \texttt{HTTPS} if their products use any third-party resources that are \texttt{HTTP}-only. \cite{mazhar2020characterizing}.
 
 \item Bad design.
 
 \end{itemize}
 
-
-%---------------------------------------------------------------------------------------------------------%
-\end{frame} 
-%---------------------------------------------------------------------------------------------------------%
-
-\subsection{Other considerations}
-%---------------------------------------------------------------------------------------------------------%
-\begin{frame}{Other considerations}
-%---------------------------------------------------------------------------------------------------------%
-
-Experiment's results show following differences among IoT and Non-IoT traffic:
-
-\begin{description}
-\justifying
-\item[DNS trafﬁc] IoT devices initiate DNS queries for only a limited number of domains while non-IoT device, such as a laptop, looks for more than $300$ domain names in a course of a few hours.
-
-\item[Number of Cloud servers] IoT device communicates with less than $10$ servers on average per day while non-IoT device contacts about $500$ different servers
-\end{description}
 
 %---------------------------------------------------------------------------------------------------------%
 \end{frame} 
